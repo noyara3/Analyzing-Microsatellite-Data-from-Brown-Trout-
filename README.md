@@ -1,11 +1,11 @@
 # Analyzing Microsatellite Data from Brown Trout: 
 
-A Step-by-Step Guide Introduction Microsatellites are highly variable molecular markers that have been widely used to study genetic diversity, population structure, and relatedness in various organisms, including fish. 
+*A Step-by-Step Guide Introduction Microsatellites are highly variable molecular markers that have been widely used to study genetic diversity, population * * structure, and relatedness in various organisms, including fish. 
 
-I will explore how to analyze microsatellite data from brown trout using R.
+>I will explore how to analyze microsatellite data from brown trout using R.
 
 ## Prerequisites 
-Before I begin, make sure you have the following R packages installed: 
+* Before I begin, make sure you have the following R packages installed: 
 
 ## Step 1: Install the Required Packages:
 
