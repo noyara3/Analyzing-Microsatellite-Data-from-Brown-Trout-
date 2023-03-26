@@ -45,7 +45,7 @@ Use the following command to view the imported data:
 Check if the genotypes are unique using the following command:
 > mlg(Brown.Trout)
 
-##Step 6: Check the Sample Size for Each Site
+## Step 6: Check the Sample Size for Each Site
 
 Check the sample size for each site using the following command:
 > summary(Brown.Trout$pop)
@@ -105,7 +105,8 @@ I will plot the results of the DAPC using the scatter() function from the adegen
 
 ## Step 18: Calculate the inbreeding coefficient (FIS) 
 (The FIS value is a measure of the proportion of homozygosity in a population, with higher values indicating a higher level of homozygosity and lower values indicating a lower level of homozygosity).
-FIS_b_trout = apply(basic_b_trout$F, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) FIS_b_trout
+
+> FIS_b_trout = apply(basic_b_trout$F, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) FIS_b_trout
 
 
 ## Summary:
