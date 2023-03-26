@@ -43,49 +43,49 @@ Use the following command to view the imported data:
 ## Step 5: Check for Unique Genotypes
 
 Check if the genotypes are unique using the following command:
-> mlg(Brown.Trout)
+```mlg(Brown.Trout)```
 
 ## Step 6: Check the Sample Size for Each Site
 
 Check the sample size for each site using the following command:
-> summary(Brown.Trout$pop)
+```summary(Brown.Trout$pop)```
 
 ## Step 7: Check Number of Alleles per Locus
 
 Check the number of alleles per locus using the following command:
-> table(Brown.Trout$loc.fac)
+```table(Brown.Trout$loc.fac)```
 
 ## Step 8: Check for Private Alleles per Site
 
 Check the number of private alleles per site across all loci using the following command:
-> private_alleles(Brown.Trout) %>% apply(MARGIN = 1, FUN = sum)
+```private_alleles(Brown.Trout) %>% apply(MARGIN = 1, FUN = sum)```
 
 ## Step 9: Check Mean Allelic Richness per Site
 
 Check the mean allelic richness per site across all loci using the following command:
-> allelic.richness(genind2hierfstat(Brown.Trout))$Ar %>% apply(MARGIN = 2, FUN = mean) %>% round(digits = 3)
+```allelic.richness(genind2hierfstat(Brown.Trout))$Ar %>% apply(MARGIN = 2, FUN = mean) %>% round(digits = 3)```
 
 ## Step 10: Check Heterozygosity per Site
 
 Check the heterozygosity per site using the following command:
->basic_b_trout = basic.stats(Brown.Trout, diploid = TRUE) Ho_b_trout = apply(basic_b_trout$Ho, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) >He_b_trout = apply(basic_b_trout$Hs, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) Het_Btrout_df = data.frame(Site = names(Ho_Btrout), Ho = >Ho_Btrout, He = He_Btrout) %>% melt(id.vars = "Site")
+```basic_b_trout = basic.stats(Brown.Trout, diploid = TRUE) Ho_b_trout = apply(basic_b_trout$Ho, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) He_b_trout = apply(basic_b_trout$Hs, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) Het_Btrout_df = data.frame(Site = names(Ho_Btrout), Ho = Ho_Btrout, He = He_Btrout) %>% melt(id.vars = "Site")```
 
 
 ## Step 11: Calculate heterozygosity per site
 
 (a higher proportion of heterozygous individuals at a particular locus can indicate greater genetic diversity).
 
->Calculate basic stats using hierfstat > basic_b_trout = basic.stats(Brown.Trout, diploid = TRUE) Ho_b_trout = apply(basic_b_trout$Ho, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) Ho_b_trout
+```Calculate basic stats using hierfstat > basic_b_trout = basic.stats(Brown.Trout, diploid = TRUE) Ho_b_trout = apply(basic_b_trout$Ho, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) Ho_b_trout```
 
 ## Step 12: Calculate the mean expected heterozygosity per site.
 
->He_b_trout = apply(basic_b_trout$Hs, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) He_b_trout
+```He_b_trout = apply(basic_b_trout$Hs, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) He_b_trout```
 
 ## Step 13: Visualize heterozygosity per site 
 
 (the observed heterozygosity (Ho) and the expected heterozygosity (He)).
 
-> (Het_Btrout_df = data.frame(Site = names(Ho_b_trout), Ho = Ho_b_trout, He = He_b_trout) %>% melt(id.vars = "Site") custom_theme = theme( axis.text.x = element_text(size = 10, angle = 90, vjust = 0.5, face = "bold"), axis.text.y = element_text(size = 10), axis.title.y = element_text(size = 12), axis.title.x = element_blank(), axis.line.y = element_line(size = 0.5), legend.title = element_blank(), legend.text = element_text(size = 12), panel.grid = element_blank(), panel.background = element_blank(), plot.title = element_text(hjust = 0.5, size = 15, face="bold") ) hetlab.o = expression(italic("H")[o]) hetlab.e = expression(italic("H")[e]) ggplot(data = Het_Btrout_df, aes(x = Site, y = value, fill = variable))+ geom_bar(stat = "identity", position = "dodge", colour = "black")+ scale_y_continuous(expand = c(0,0), limits = c(0,0.750), breaks = c(0, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60))+ scale_fill_manual(values = c("pink", "#bdbdbd"), labels = c(hetlab.o, hetlab.e))+ ylab("Heterozygosity")+ ggtitle("B.trout Heterozygosity")+ custom_theme)
+```(Het_Btrout_df = data.frame(Site = names(Ho_b_trout), Ho = Ho_b_trout, He = He_b_trout) %>% melt(id.vars = "Site") custom_theme = theme( axis.text.x = element_text(size = 10, angle = 90, vjust = 0.5, face = "bold"), axis.text.y = element_text(size = 10), axis.title.y = element_text(size = 12), axis.title.x = element_blank(), axis.line.y = element_line(size = 0.5), legend.title = element_blank(), legend.text = element_text(size = 12), panel.grid = element_blank(), panel.background = element_blank(), plot.title = element_text(hjust = 0.5, size = 15, face="bold") ) hetlab.o = expression(italic("H")[o]) hetlab.e = expression(italic("H")[e]) ggplot(data = Het_Btrout_df, aes(x = Site, y = value, fill = variable))+ geom_bar(stat = "identity", position = "dodge", colour = "black")+ scale_y_continuous(expand = c(0,0), limits = c(0,0.750), breaks = c(0, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60))+ scale_fill_manual(values = c("pink", "#bdbdbd"), labels = c(hetlab.o, hetlab.e))+ ylab("Heterozygosity")+ ggtitle("B.trout Heterozygosity")+ custom_theme)```
 
 ## Step 14: Perform Principal Component Analysis (PCA) 
 
@@ -106,7 +106,7 @@ I will plot the results of the DAPC using the scatter() function from the adegen
 ## Step 18: Calculate the inbreeding coefficient (FIS) 
 (The FIS value is a measure of the proportion of homozygosity in a population, with higher values indicating a higher level of homozygosity and lower values indicating a lower level of homozygosity).
 
-> FIS_b_trout = apply(basic_b_trout$F, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) FIS_b_trout
+```FIS_b_trout = apply(basic_b_trout$F, MARGIN = 2, FUN = mean, na.rm = TRUE) %>% round(digits = 2) FIS_b_trout```
 
 
 ## Summary:
