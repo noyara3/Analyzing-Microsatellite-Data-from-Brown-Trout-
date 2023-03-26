@@ -26,7 +26,7 @@ ggplot2: a package for creating graphics, and others..
  
 I will start by importing the microsatellite data. I’ll assume that the data is in GenePop format. To import the data, use the following R command:
 
-> Brown.Trout <- read.genepop('file_location/file_name.gen', ncode = 3L)
+```Brown.Trout <- read.genepop('file_location/file_name.gen', ncode = 3L)```
 
 ## Step 3: Load the Data 
 
