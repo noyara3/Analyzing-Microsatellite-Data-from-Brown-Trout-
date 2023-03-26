@@ -10,7 +10,7 @@ Before I begin, make sure you have the following R packages installed:
 ## Step 1: Install the Required Packages:
 
 First, I need to install the required packages that I will be using for the analysis. 
-In R, I can do this using the install.packages() function. 
+In R, I can do this using the *install.packages() function. 
 
 I will be using the following packages: 
 ade4: a package for multivariate data analysis 
