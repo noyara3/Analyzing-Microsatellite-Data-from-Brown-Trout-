@@ -3,6 +3,7 @@
 A Step-by-Step Guide Introduction Microsatellites are highly variable molecular markers that have been widely used to study genetic diversity, population structure, and relatedness in various organisms, including fish. 
 
 I will explore how to analyze microsatellite data from brown trout using R.
+The background color is `#ffffff` for light mode and `#000000` for dark mode.
 
 ## Prerequisites 
 Before I begin, make sure you have the following R packages installed: 
