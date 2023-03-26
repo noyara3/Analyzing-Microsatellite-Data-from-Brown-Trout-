@@ -1,11 +1,11 @@
 # Analyzing Microsatellite Data from Brown Trout: 
 
-*A Step-by-Step Guide Introduction Microsatellites are highly variable molecular markers that have been widely used to study genetic diversity, population * * structure, and relatedness in various organisms, including fish. 
+A Step-by-Step Guide Introduction Microsatellites are highly variable molecular markers that have been widely used to study genetic diversity, population structure, and relatedness in various organisms, including fish. 
 
->I will explore how to analyze microsatellite data from brown trout using R.
+I will explore how to analyze microsatellite data from brown trout using R.
 
 ## Prerequisites 
-* Before I begin, make sure you have the following R packages installed: 
+Before I begin, make sure you have the following R packages installed: 
 
 ## Step 1: Install the Required Packages:
 
@@ -17,9 +17,9 @@ ade4: a package for multivariate data analysis
 adegenet: a package for population genetics analysis 
 ggplot2: a package for creating graphics, and others..
 
-install.packages(c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer')) 
+> install.packages(c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer')) 
 
-lapply (c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer'), require, character.only = TRUE) 
+> lapply (c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer'), require, character.only = TRUE) 
 
 
 ## Step 2: Import Microsatellite Data:
