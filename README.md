@@ -17,9 +17,9 @@ ade4: a package for multivariate data analysis
 adegenet: a package for population genetics analysis 
 ggplot2: a package for creating graphics, and others..
 
-> install.packages(c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer')) 
+``` install.packages(c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer')) 
 
-> lapply (c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer'), require, character.only = TRUE) 
+ lapply (c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer'), require, character.only = TRUE) ```
 
 
 ## Step 2: Import Microsatellite Data:
@@ -38,7 +38,7 @@ To load the data, I will use the read.genepop() function from the adegenet packa
 
 Let's check the imported data to ensure it was read in correctly. 
 Use the following command to view the imported data: 
-> print(Brown.Trout)
+```print(Brown.Trout)```
 
 ## Step 5: Check for Unique Genotypes
 
