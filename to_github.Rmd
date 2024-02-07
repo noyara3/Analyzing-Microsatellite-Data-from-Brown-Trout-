@@ -1,2 +1,96 @@
-Coming soon 
 
+```{r}
+
+install.packages(c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer', 'STAMPP')
+lapply (c("ggplot2", "adegenet", "dplyr", 'poppr', 'hierfstat', 'reshape2', 'scales', 'RColorBrewer', 'STAMPP'), require, character.only = TRUE)
+
+```
+
+
+```{r}
+Brown.Trout = read.genepop('/Users/nooralwash/Downloads/Nomin2.gen', ncode = 3L)
+```
+
+```{r}
+#Check C.I. for Fst
+example_fst = diffCalc(infile="/Users/nooralwash/Downloads/FST-Control.gen", fst = T, bs_pairwise = T, boots = 10000, outfile = "example_fst") 
+```
+```{r}
+lab_order = c('Cont_Wild_Cont_Heik_125' , 'Cont_Wild_Rest_Heik_144' , 'Cont_Wild_Cont_Kall_566' , 'Cont_Wild_Rest_Kall_576' , 'Cont_Wild_Cont_Savi_269' , 'Cont_Wild_Rest_Savi_287' , 'Cont_Wild_Cont_Silt_404' , 'Cont_Wild_Rest_Silt_411')
+
+fst.mat = as.matrix(Brown.Trout_fst)
+fst.mat1 = fst.mat[lab_order, ]
+fst.mat2 = fst.mat1[, lab_order]
+
+ind = which(upper.tri(fst.mat2), arr.ind = TRUE)
+fst.df = data.frame(Site1 = dimnames(fst.mat2)[[2]][ind[,2]],
+                    Site2 = dimnames(fst.mat2)[[1]][ind[,1]],
+                    Fst = fst.mat2[ ind ])
+
+fst.df$Site1 = factor(fst.df$Site1, levels = unique(fst.df$Site1))
+fst.df$Site2 = factor(fst.df$Site2, levels = unique(fst.df$Site2))
+
+fst.df$Fst[fst.df$Fst < 0] = 0
+
+fst.df %>% str
+```
+
+
+```{r}
+fst.label = expression(italic("F")[ST])
+mid = max(fst.df$Fst) / 2
+ggplot(data = fst.df, aes(x = Site1, y = Site2, fill = Fst))+
+  geom_tile(colour = "black")+
+  geom_text(aes(label = Fst), color="black", size = 3)+
+  scale_fill_gradient2(low = "blue", mid = "white", high = "white", midpoint = mid, name = fst.label, limits = c(0, max(fst.df$Fst)), breaks = c(0, 0.05, 0.10))+
+  scale_x_discrete(expand = c(0,0))+
+  scale_y_discrete(expand = c(0,0), position = "right")+
+  theme(axis.text.y = element_text( colour = "black", size = 9, face = "bold"),
+        axis.text.x = element_text(angle= 90, colour = "black", size = 9, face = "bold"),
+        axis.title = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank(),
+        legend.position = "right",
+        legend.title = element_text(size = 14, face = "bold"),
+        legend.text = element_text(size = 10)
+        )
+
+```
+
+```{r}
+private_alleles(Brown.Trout) %>% apply(MARGIN = 1, FUN = sum)
+```
+
+```{r}
+allelic.richness(genind2hierfstat(Brown.Trout))$Ar %>%
+  apply(MARGIN = 2, FUN = mean) %>% 
+  round(digits = 3)
+```
+
+```{r}
+Het_Btrout_df = data.frame(Site = names(Ho_Btrout), Ho = Ho_Btrout, He = He_Btrout) %>%
+  melt(id.vars = "Site")
+
+custom_theme = theme(
+  axis.text.x = element_text(size = 10, angle = 90, vjust = 0.5, face = "bold"),
+  axis.text.y = element_text(size = 10),
+  axis.title.y = element_text(size = 12),
+  axis.title.x = element_blank(),
+  axis.line.y = element_line(size = 0.5),
+  legend.title = element_blank(),
+  legend.text = element_text(size = 12),
+  panel.grid = element_blank(),
+  panel.background = element_blank(),
+  plot.title = element_text(hjust = 0.5, size = 15, face="bold")
+  )
+hetlab.o = expression(italic("H")[o])
+hetlab.e = expression(italic("H")[e])
+
+ggplot(data = Het_Btrout_df, aes(x = Site, y = value, fill = variable))+
+  geom_bar(stat = "identity", position = "dodge", colour = "black")+
+  scale_y_continuous(expand = c(0,0), limits = c(0,0.750), breaks = c(0, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60))+
+  scale_fill_manual(values = c("pink", "#bdbdbd"), labels = c(hetlab.o, hetlab.e))+
+  ylab("Heterozygosity")+
+  ggtitle("B.trout Heterozygosity")+
+  custom_theme
+```
